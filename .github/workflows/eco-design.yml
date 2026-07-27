@@ -82,13 +82,8 @@ jobs:
       - name: Attendre que Surge soit disponible
         run: sleep 20
 
-      - name: Découverte des pages
+      - name: Crawl et analyse EcoIndex
         run: node scripts/crawl.mjs
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-
-      - name: Analyse EcoIndex
-        run: node scripts/ecoindex.mjs
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
 
