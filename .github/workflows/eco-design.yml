@@ -79,9 +79,6 @@ jobs:
       - name: Installation Playwright (Chromium uniquement)
         run: npx playwright install --with-deps chromium
 
-      - name: Attendre que Surge soit disponible
-        run: sleep 20
-
       - name: Crawl et analyse EcoIndex
         run: node scripts/crawl.mjs
         env:
