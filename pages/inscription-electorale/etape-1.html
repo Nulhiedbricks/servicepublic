@@ -107,12 +107,34 @@
         <h3 style="font-size:16px;">Aperçu en images (défilement automatique)</h3>
         <div class="carrousel-exemples">
           <div class="carrousel-piste">
-            <img src="../../img/cni/exemple-cni-conforme.jpg"
-              alt="Exemple de carte d'identité conforme : nette, entière, sans reflet">
-            <img src="../../img/cni/exemple-cni-floue.jpg" alt="Exemple non conforme : photo floue">
-            <img src="../../img/cni/exemple-cni-coupee.jpg" alt="Exemple non conforme : document coupé en haut">
-            <img src="../../img/cni/exemple-cni-reflet.jpg"
-              alt="Exemple non conforme : reflet de lumière sur le document">
+            <picture>
+              <source srcset="img/cni/exemple-cni-conforme.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-conforme.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-conforme.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-conforme.avif"
+                alt="Exemple de carte d'identité conforme : nette, entière, sans reflet" width="645">
+            </picture>
+            <picture>
+              <source srcset="img/cni/exemple-cni-floue.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-floue.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-floue.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-floue.avif" alt="Exemple non conforme : photo floue" width="645">
+            </picture>
+            <picture>
+              <source srcset="img/cni/exemple-cni-coupee.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-coupee.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-coupee.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-coupee.avif" alt="Exemple non conforme : document coupé en haut"
+                width="645">
+            </picture>
+            <picture>
+              <source srcset="img/cni/exemple-cni-reflet.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-reflet.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-reflet.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-reflet.avif" alt="Exemple non conforme : reflet de lumière sur le document"
+                width="645">
+            </picture>
+
           </div>
           <div class="carrousel-points">
             <span class="actif"></span><span></span><span></span><span></span>
@@ -122,19 +144,39 @@
         <h3 style="font-size:16px;margin-top:30px;">Galerie détaillée</h3>
         <div class="galerie-exemples">
           <div class="exemple-carte valide">
-            <img src="../../img/cni/exemple-cni-conforme.jpg" alt="Document conforme">
+            <picture>
+              <source srcset="img/cni/exemple-cni-conforme.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-conforme.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-conforme.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-conforme.avif" alt="Document conforme" width="645">
+            </picture>
             <div class="legende">✓ Conforme — document entier, net, lisible</div>
           </div>
           <div class="exemple-carte invalide">
-            <img src="../../img/cni/exemple-cni-floue.jpg" alt="Document flou">
+            <picture>
+              <source srcset="img/cni/exemple-cni-floue.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-floue.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-floue.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-floue.avif" alt="Document flou" width="645">
+            </picture>
             <div class="legende">✕ Refusé — photo trop floue</div>
           </div>
           <div class="exemple-carte invalide">
-            <img src="../../img/cni/exemple-cni-coupee.jpg" alt="Document coupé">
+            <picture>
+              <source srcset="img/cni/exemple-cni-coupee.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-coupee.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-coupee.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-coupee.avif" alt="Document coupé" width="645">
+            </picture>
             <div class="legende">✕ Refusé — coin du document hors cadre</div>
           </div>
           <div class="exemple-carte invalide">
-            <img src="../../img/cni/exemple-cni-reflet.jpg" alt="Document avec reflet">
+            <picture>
+              <source srcset="img/cni/exemple-cni-reflet.avif" type="image/avif">
+              <source srcset="img/cni/exemple-cni-reflet.webp" type="image/webp">
+              <source srcset="img/cni/exemple-cni-reflet.jpg" type="image/jpg">
+              <img src="img/cni/exemple-cni-reflet.avif" alt="Document avec reflet" width="645">
+            </picture>
             <div class="legende">✕ Refusé — reflet empêchant la lecture</div>
           </div>
         </div>
@@ -217,8 +259,12 @@
     </div>
   </footer>
 
-  <img src="../../img/mascotte.png" class="mascotte-flottante" alt="" aria-hidden="true">
-
+  <picture>
+    <source srcset="img/mascotte/mascotte.avif" type="image/avif">
+    <source srcset="img/mascotte/mascotte.webp" type="image/webp">
+    <source srcset="img/mascotte/mascotte.jpg" type="image/jpg">
+    <img src="img/mascotte/mascotte.avif" alt="" width="90" height="90">
+  </picture>
   <style>
     .ecran-etape {
       display: none;
