@@ -1,0 +1,29 @@
+[
+  {
+    "date": "2026-07-27T13:22:31.341Z",
+    "commit": "ca28483",
+    "average": 88.53,
+    "pages": [
+      {
+        "page": "/",
+        "score": 86.89208847925887,
+        "grade": "A"
+      },
+      {
+        "page": "/pages/carte-identite/etape-1.html",
+        "score": 88.98289945968381,
+        "grade": "A"
+      },
+      {
+        "page": "/pages/acte-naissance/etape-1.html",
+        "score": 89.63504390211988,
+        "grade": "A"
+      },
+      {
+        "page": "/pages/inscription-electorale/etape-1.html",
+        "score": 88.59391376083624,
+        "grade": "A"
+      }
+    ]
+  }
+]
