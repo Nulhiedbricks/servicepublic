@@ -1,0 +1,112 @@
+name: Écoconception - Compression & Mesure
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  # -----------------------------------------------------------------
+  # Job 1 : sur chaque PR et chaque push. Rapide (pas de navigateur).
+  # Compresse les images, construit le site, mesure poids/CO2,
+  # et ne déploie / n'historise que sur push main.
+  # -----------------------------------------------------------------
+  eco-guard:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      deployed: ${{ steps.deploy.outcome == 'success' }}
+
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: 'npm'
+
+      - name: Installation des dépendances
+        run: npm ci
+
+      - name: Compression des images HERO
+        run: npm run compressHeroImages
+      - name: Compression des images ACTU
+        run: npm run compressActuImages
+      - name: Compression des images CNI
+        run: npm run compressCNIImages
+      - name: Compression des images LOGO
+        run: npm run compressLogoImages
+      - name: Compression des images MASCOTTE
+        run: npm run compressMascotteImages
+
+      - name: Préparation du dossier de déploiement
+        run: npm run prepareDeploy
+
+      - name: Déploiement sur Surge
+        id: deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx surge ./public --token ${{ secrets.SURGE_TOKEN }}
+
+  # -----------------------------------------------------------------
+  # Job 2 : uniquement après un déploiement réussi sur main.
+  # Audit du site réellement en ligne : score EcoIndex, historisé.
+  # -----------------------------------------------------------------
+  ecoindex-audit:
+    needs: eco-guard
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: 'npm'
+
+      - name: Installation des dépendances
+        run: npm ci
+
+      - name: Installation Playwright (Chromium uniquement)
+        run: npx playwright install --with-deps chromium
+
+      - name: Attendre que Surge soit disponible
+        run: sleep 20
+
+      - name: Découverte des pages
+        run: node scripts/crawl.mjs
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+
+      - name: Analyse EcoIndex
+        run: node scripts/ecoindex.mjs
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+
+      - name: Génération du rapport EcoIndex
+        run: node scripts/report-ecoindex.mjs
+        env:
+          ECOINDEX_MIN_SCORE: 75
+
+      - name: Upload du rapport EcoIndex
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecoindex-report
+          path: reports/index.html
+
+      - name: Commit de l'historique EcoIndex
+        run: |
+          git config user.name "eco-ci-bot"
+          git config user.email "eco-ci-bot@users.noreply.github.com"
+          git add eco-metrics/history-ecoindex.json
+          git diff --staged --quiet || git commit -m "chore(eco): historique EcoIndex [skip ci]"
+          git push
