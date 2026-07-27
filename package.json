@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "compressHeroImages": "node scripts/optimize-images.js -i img/hero -o public/img/hero -f avif,webp -s 500x -q 80 --max-compression",
-    "compressActuImages": "node scripts/optimize-images.js -i img/actu -o public/img/actu -f avif,webp -s x220 -q 50 --max-compression",
-    "compressLogoImages": "node scripts/optimize-images.js -i img/logo -o public/img/logo -f avif,webp -s 115x -q 50 --max-compression",
-    "compressMascotteImages": "node scripts/optimize-images.js -i img/mascotte -o public/img/mascotte -f avif,webp -s 90x -q 50 --max-compression",
-    "compressCNIImages": "node scripts/optimize-images.js -i img/cni -o public/img/cni -f avif,webp -s 645x -q 50 --max-compression",
+    "compressHeroImages": "node scripts/optimize-images.js -i img/hero -o public/img/hero -f avif,webp -s 500x -q 100 --max-compression",
+    "compressActuImages": "node scripts/optimize-images.js -i img/actu -o public/img/actu -f avif,webp -s x220 -q 100 --max-compression",
+    "compressLogoImages": "node scripts/optimize-images.js -i img/logo -o public/img/logo -f avif,webp -s 115x -q 100 --max-compression",
+    "compressMascotteImages": "node scripts/optimize-images.js -i img/mascotte -o public/img/mascotte -f avif,webp -s 90x -q 100 --max-compression",
+    "compressCNIImages": "node scripts/optimize-images.js -i img/cni -o public/img/cni -f avif,webp -s 645x -q 100 --max-compression",
     "prepareDeploy": "mkdir -p public && cp index.html public/index.html && cp CNAME public/CNAME && cp -r css/ public/css && cp -r js/ public/js && cp -r pages/ public/pages"
   },
   "dependencies": {
