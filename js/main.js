@@ -4,6 +4,9 @@
 // non optimisées (polling, mascotte animée, compteur inutile)
 // cf. ECOCONCEPTION.md
 // =========================================================
+const MAX_FILES_CNI = 2;
+const MAX_SIZE = 2 * 1024 * 1024; // 2 Mo
+
 
 // Compteur de visiteurs "temps réel" décoratif — déclenche un
 // re-rendu toutes les 2 secondes sans aucune valeur d'usage.
@@ -45,24 +48,45 @@ function initZoneUpload() {
   zone.addEventListener('click', () => input.click());
 
   input.addEventListener('change', (e) => {
-    Array.from(e.target.files).forEach(file => {
+    const fichiers = Array.from(e.target.files);
+
+    // Compter les fichiers déjà ajoutés dans la liste
+    const fichiersExistants = liste.querySelectorAll('.fichier-item').length;
+
+    if (fichiersExistants + fichiers.length > MAX_FILES_CNI) {
+      alert(`Vous ne pouvez pas ajouter plus de ${MAX_FILES_CNI} fichiers.`);
+      input.value = "";
+      return;
+    }
+
+    fichiers.forEach(file => {
+      if (file.size > MAX_SIZE) {
+        alert(`${file.name} dépasse la limite de 2 Mo.`);
+        return;
+      }
+
       const item = document.createElement('div');
       item.className = 'fichier-item';
 
-      // Pas de redimensionnement/compression côté client :
-      // l'image est lue en pleine résolution pour la miniature.
       const reader = new FileReader();
       reader.onload = (ev) => {
         item.innerHTML = `
-          <img class="miniature" src="${ev.target.result}" alt="">
-          <span class="nom">${file.name} — ${(file.size / 1024 / 1024).toFixed(2)} Mo</span>
-          <button class="supprimer" type="button" aria-label="Supprimer">✕</button>
-        `;
-        item.querySelector('.supprimer').addEventListener('click', () => item.remove());
+        <img class="miniature" src="${ev.target.result}" alt="">
+        <span class="nom">${file.name} — ${(file.size / 1024 / 1024).toFixed(2)} Mo</span>
+        <button class="supprimer" type="button" aria-label="Supprimer">✕</button>
+      `;
+
+        item.querySelector('.supprimer').addEventListener('click', () => {
+          item.remove();
+        });
       };
+
       reader.readAsDataURL(file);
       liste.appendChild(item);
     });
+
+    // Permet de re-sélectionner le même fichier après suppression
+    input.value = "";
   });
 }
 document.addEventListener('DOMContentLoaded', initZoneUpload);

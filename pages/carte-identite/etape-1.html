@@ -169,12 +169,13 @@
           <div class="zone-upload">
             <div class="icone">📤</div>
             <p><strong>Cliquez pour sélectionner vos fichiers</strong> ou glissez-les ici</p>
-            <div class="formats">Formats acceptés : JPG, PNG, PDF, HEIC, TIFF — sans limite de taille indiquée</div>
+            <div class="formats">Formats acceptés : JPG, PNG, PDF, HEIC, TIFF — 2 Mo par fichier / Max 2 fichiers</div>
           </div>
-          <input type="file" id="input-fichier" multiple style="display:none">
+          <input type="file" id="input-fichier" multiple style="display:none"
+            accept=".jpg,.jpeg,.png,.pdf,.heic,.tif,.tiff">
           <div class="liste-fichiers"></div>
-          <div class="aide">Astuce : si votre photo prise au téléphone est très volumineuse, elle sera tout de même
-            acceptée et envoyée dans sa résolution d'origine.</div>
+          <!-- <div class="aide">Astuce : si votre photo prise au téléphone est très volumineuse, elle sera tout de même
+            acceptée et envoyée dans sa résolution d'origine.</div> -->
         </div>
 
         <div class="actions-etape">
