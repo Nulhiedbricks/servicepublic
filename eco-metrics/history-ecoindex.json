@@ -160,5 +160,32 @@
         "grade": "A"
       }
     ]
+  },
+  {
+    "date": "2026-07-28T13:42:27.903Z",
+    "commit": "8d5a3f0",
+    "average": 87.28,
+    "pages": [
+      {
+        "page": "/",
+        "score": 82.96447713892846,
+        "grade": "A"
+      },
+      {
+        "page": "/pages/carte-identite/etape-1.html",
+        "score": 88.78514157293897,
+        "grade": "A"
+      },
+      {
+        "page": "/pages/acte-naissance/etape-1.html",
+        "score": 89.42040372009674,
+        "grade": "A"
+      },
+      {
+        "page": "/pages/inscription-electorale/etape-1.html",
+        "score": 87.96026066747478,
+        "grade": "A"
+      }
+    ]
   }
 ]
