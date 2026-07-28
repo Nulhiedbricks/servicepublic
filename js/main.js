@@ -10,15 +10,15 @@ const MAX_SIZE = 2 * 1024 * 1024; // 2 Mo
 
 // Compteur de visiteurs "temps réel" décoratif — déclenche un
 // re-rendu toutes les 2 secondes sans aucune valeur d'usage.
-(function compteurVisiteursDecoratif() {
-  const el = document.querySelector('[data-compteur-live]');
-  if (!el) return;
-  let base = 184320;
-  setInterval(() => {
-    base += Math.floor(Math.random() * 5);
-    el.textContent = base.toLocaleString('fr-FR');
-  }, 2000);
-})();
+// (function compteurVisiteursDecoratif() {
+//   const el = document.querySelector('[data-compteur-live]');
+//   if (!el) return;
+//   let base = 184320;
+//   setInterval(() => {
+//     base += Math.floor(Math.random() * 5);
+//     el.textContent = base.toLocaleString('fr-FR');
+//   }, 2000);
+// })();
 
 // Carrousel logos partenaires : dupliqué dans le HTML pour boucler,
 // piloté uniquement en CSS (cf. style.css)
