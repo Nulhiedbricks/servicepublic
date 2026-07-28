@@ -44,7 +44,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-const SUPPORTED_INPUT_EXT = ['.png', '.jpg', '.jpeg', '.webp', '.avif', '.tiff', '.gif'];
+const SUPPORTED_INPUT_EXT = ['.png', '.jpg', '.jpeg', '.gif'];
 const SUPPORTED_OUTPUT_FORMATS = ['png', 'webp', 'avif'];
 
 // ---------------------------------------------------------------

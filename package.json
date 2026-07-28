@@ -5,7 +5,7 @@
     "compressLogoImages": "node scripts/optimize-images.js -i img/logo -o public/img/logo -f avif,webp -s 115x -q 100 --max-compression",
     "compressMascotteImages": "node scripts/optimize-images.js -i img/mascotte -o public/img/mascotte -f avif,webp -s 90x -q 100 --max-compression",
     "compressCNIImages": "node scripts/optimize-images.js -i img/cni -o public/img/cni -f avif,webp -s 645x -q 100 --max-compression",
-    "prepareDeploy": "mkdir -p public && cp index.html public/index.html && cp CNAME public/CNAME && cp -r css/ public/css && cp -r js/ public/js && cp -r pages/ public/pages"
+    "prepareDeploy": "mkdir -p public && cp index.html public/index.html && cp CNAME public/CNAME && cp -r css/ public/css && cp -r js/ public/js && cp -r fonts/ public/fonts && cp -r pages/ public/pages"
   },
   "dependencies": {
     "ecoindex": "^2.0.1",
